@@ -12,15 +12,12 @@ class UserCommentForm(forms.ModelForm):
     error_msg = _(
         'Cannot be empty nor only contain spaces. Please fill in the field.')
 
-    bodytext = forms.Textarea()
-
     class Meta:
         model = Comment
         fields = ["bodytext"]
-        if MAX_LENGTH_TEXTAREA is not None:
-            widgets = {
-                'bodytext': forms.Textarea(attrs={'maxlength': MAX_LENGTH_TEXTAREA})
-            }
+        widgets = {
+            'bodytext': forms.Textarea(attrs={"class": "textarea"})
+        }
 
     def clean_bodytext(self):
         bodytext = self.cleaned_data.get('bodytext')
@@ -29,12 +26,9 @@ class UserCommentForm(forms.ModelForm):
                 raise forms.ValidationError(self.error_msg)
         return bodytext
 
-
 class CommentForm(UserCommentForm):
     user_name = forms.CharField(label=_('Username'), initial=_('anonymous'))
     user_email = forms.EmailField(label=_('E-mail'), required=False)
-    # captcha = MathCaptchaField(
-        # required=True, error_messages={'invalid': _('Welcome robot')})
 
     class Meta:
         model = Comment

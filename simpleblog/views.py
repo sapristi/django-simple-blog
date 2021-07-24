@@ -9,7 +9,7 @@ from .models import Comment, Post
 
 
 class LatestEntriesFeed(Feed):
-    title = "%s blog entries" % (Site.objects.get_current())
+    title = "Latest blog entries"
     description = "The latest blog entries"
     link = "/siteposts/"
 
