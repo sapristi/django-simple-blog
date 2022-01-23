@@ -1,4 +1,4 @@
 Django>=1.8
-django-el-pagination==3.0.1
+django-el-pagination==3.3.0
 django-markdown-deux>=1.0.4
 django-pagedown
